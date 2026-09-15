@@ -9,6 +9,22 @@
 - Git: 2.55.0.windows.5
 
 ## Estructura del proyecto
+INF8239_U01/
+├── data/
+│ └── raw/
+│ └── .gitkeep
+├── notebooks/
+│ └── 00_verificacion.ipynb
+├── reports/
+├── src/
+│ └── inf8239_u01/
+│ ├── init.py
+│ └── environment.py
+├── tests/
+│ └── test_environment.py
+├── .gitignore
+├── requirements.txt
+└── README.md
 
 ## Pasos ejecutados
 
