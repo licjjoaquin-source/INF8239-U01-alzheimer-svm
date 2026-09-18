@@ -182,3 +182,51 @@ descarga de datos, pruebas automatizadas y control de versiones con Git) permite
 cualquier persona con las credenciales de Kaggle correspondientes pueda replicar 
 exactamente los resultados aqui presentados, cumpliendo con los principios de ciencia 
 de datos reproducible establecidos en la Unidad 01 del curso.
+
+---
+
+# LAB03 - Ensambles, reduccion dimensional y Green AI
+
+## Protocolo
+
+Se reutilizo el mismo dataset, target (Diagnosis) y particion (80/20, random_state=42, estratificada) del Ejercicio 01/LAB02, sin modificaciones.
+
+## Catalogo de modelos evaluados (6 configuraciones)
+
+| Modelo | F1-macro | Fit mediana (s) | Predict (ms) | Tamano (KB) | Pareto |
+|--------|----------|------------------|---------------|-------------|--------|
+| boost | 0.944 | 0.296 | 7.10 | 358.4 | Si |
+| rf_300 | 0.933 | 0.447 | 48.46 | 4130.7 | No |
+| rf_100 | 0.919 | 0.185 | 58.33 | 1408.5 | Si |
+| svm_c1 | 0.816 | 0.322 | 34.13 | 272.5 | No |
+| svm_c10 | 0.812 | 0.543 | 32.05 | 285.5 | No |
+| logistic | 0.799 | 0.019 | 4.20 | 5.7 | Si |
+
+## PCA
+
+PCA con 95% de varianza retenida conservo 30 de 32 componentes originales (reduccion marginal). F1-macro con PCA: 0.818 vs sin PCA: 0.816 (diferencia no significativa).
+
+## t-SNE
+
+Dos mapas con semillas distintas (42 y 7) muestran una estructura similar: nube densa con clases entremezcladas, sin separacion visual clara. Ver reports/tsne_two_seeds.png.
+
+## Decision de Green AI
+
+Se selecciono logistic como alternativa eficiente frente a boost (maximo F1):
+- Diferencia de F1-macro: -0.145 (15.4% menor)
+- Ahorro en tiempo de ajuste: 93.6%
+- Ahorro en tiempo de inferencia: 40.8%
+- Reduccion de tamano: 98.4% (5.7 KB vs 358.4 KB)
+
+Ver analisis completo y limitaciones en notebooks/03_ensambles_green_ai.ipynb y reports/pareto.png.
+
+## Entorno de ejecucion
+
+- Python 3.13.5, Windows-11-10.0.26200-SP0
+- Procesador: Intel64 Family 6 Model 154 Stepping 4
+- scikit-learn 1.9.1
+
+## Ejecucion
+
+python -m pytest -q (con PYTHONPATH=src)
+Resultado esperado: 9 passed
