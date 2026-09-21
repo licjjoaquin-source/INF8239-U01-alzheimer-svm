@@ -235,3 +235,8 @@ Resultado esperado: 9 passed
 
 Se incluye un dashboard HTML interactivo con los resultados de los Ejercicios 01 y 02: 
 reports/dashboard_alzheimer.html (abrir en cualquier navegador).
+
+## Dashboard interactivo
+
+Se incluye un dashboard HTML interactivo con los resultados de los Ejercicios 01 y 02: 
+reports/dashboard_alzheimer.html (abrir en cualquier navegador).
